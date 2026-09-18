@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
     <div className="portal-shell">
@@ -7,9 +9,13 @@ export default function Home() {
           href="#top"
           aria-label="Interdimensional Lost & Found home"
         >
-          <span className="brand-mark" aria-hidden="true">
-            ⌘
-          </span>
+          <Image
+            className="brand-mark"
+            src="/images/interdimensional-portal.webp"
+            width={30}
+            height={30}
+            alt=""
+          />
           <span>Interdimensional Lost &amp; Found</span>
         </a>
         <p>Department of Interdimensional Affairs</p>
@@ -35,15 +41,23 @@ export default function Home() {
             </a>
           </div>
 
-          <div
-            className="portal-visual"
-            aria-label="Portal status: stable"
-            role="img"
-          >
-            <div className="portal-ring">
-              <span aria-hidden="true">⌘</span>
-            </div>
-            <span className="portal-status">Portal status: stable</span>
+          <div className="portal-visual">
+            <Image
+              className="portal-art"
+              src="/images/interdimensional-portal.webp"
+              width={1254}
+              height={1254}
+              alt="A recovered object passing through an interdimensional portal"
+              priority
+            />
+            <p className="floating-label active-portal">
+              <strong>Active portal</strong>
+              <span>Stability: 84%</span>
+            </p>
+            <p className="floating-label today-recovered">
+              <strong>Today</strong>
+              <span>3 objects recovered</span>
+            </p>
           </div>
         </section>
 
