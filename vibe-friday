@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 
 readonly project_name="vibe-friday"
-readonly project_url="http://vibe-friday.localhost"
+readonly project_url="http://vibe-friday.localhost:8791"
 readonly compose=(docker compose --project-name "$project_name")
 
 require_docker() {

@@ -23,7 +23,7 @@ pnpm or browser tooling.
 - `./vibe-friday logs` — follow application logs.
 - `./vibe-friday shell` — open a shell in the application container.
 
-The application is available at `http://vibe-friday.localhost` after startup.
+The application is available at `http://vibe-friday.localhost:8791` after startup.
 Use the wrapper commands rather than host-side `node`, `npm`, `pnpm` or `npx`.
 
 ## Required workflow

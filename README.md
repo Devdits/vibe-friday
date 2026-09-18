@@ -12,7 +12,7 @@ cd vide-friday
 ./vibe-friday start
 ```
 
-Open [http://vibe-friday.localhost](http://vibe-friday.localhost).
+Open [http://vibe-friday.localhost:8791](http://vibe-friday.localhost:8791).
 
 ## Commands
 
