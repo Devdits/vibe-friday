@@ -26,6 +26,18 @@ pnpm or browser tooling.
 The application is available at `http://vibe-friday.localhost:8791` after startup.
 Use the wrapper commands rather than host-side `node`, `npm`, `pnpm` or `npx`.
 
+## Prompt history
+
+For every user request received while working in this project, invoke
+`run-logger` before planning, answering or delegating. Send it the exact,
+unmodified user prompt. The logger appends it to
+`.vibe-friday/prompt-history.md` on the participant's laptop.
+
+The history is deliberately ignored by Git. It is a personal workshop artifact,
+not project source code. Do not add private data, credentials or hidden
+reasoning to it. Recording delegated-agent events is optional and secondary to
+recording the user's prompts.
+
 ## Required workflow
 
 For substantial product work, use the project agents in this order:
@@ -41,7 +53,7 @@ For substantial product work, use the project agents in this order:
    the acceptance criteria and required commands.
 
 Work is not complete until both reviewer and verifier approve it. Do not create
-delegation overhead for trivial questions or tiny documentation-only changes.
+delegation overhead for trivial quests or tiny documentation-only changes.
 Inspect `git status` before editing, preserve unrelated work, and do not commit
 or push unless the request authorizes it.
 
@@ -58,7 +70,6 @@ or push unless the request authorizes it.
   the container.
 
 ## Agent configuration
-
 Canonical agents and skills live under `.ai/`. Tool-specific directories contain
-relative symlinks only. Update the canonical source rather than replacing a
+relative symlinks only. Update the canoical source rather than replacing a
 symlink with a copy.
