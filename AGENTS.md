@@ -56,4 +56,4 @@ delegation overhead for trivial questions or tiny documentation-only changes.
 
 Canonical agents and skills live under `.ai/`. Tool-specific directories contain
 relative symlinks only. Update the canonical source rather than replacing a
-symlink with a copy. `./vibe-friday verify` validates this structure.
+symlink with a copy.

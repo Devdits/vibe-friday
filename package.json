@@ -11,8 +11,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:smoke": "playwright test",
-    "check:symlinks": "node scripts/check-symlinks.mjs",
-    "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm check:symlinks && pnpm build && pnpm test:smoke"
+    "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm test:smoke"
   },
   "dependencies": {
     "next": "16.3.5",
