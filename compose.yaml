@@ -24,20 +24,6 @@ services:
       retries: 30
       start_period: 10s
 
-  verify:
-    build:
-      context: .
-      target: verification
-    profiles:
-      - tools
-    depends_on:
-      app:
-        condition: service_healthy
-    environment:
-      CI: "true"
-      PLAYWRIGHT_BASE_URL: http://127.0.0.1:3000
-    network_mode: "service:app"
-
 volumes:
   app_node_modules:
   next_cache:

@@ -19,12 +19,8 @@ FROM dependencies AS development
 
 COPY . .
 
+RUN pnpm exec playwright install --with-deps chromium
+
 EXPOSE 3000
 
 CMD ["pnpm", "dev"]
-
-FROM development AS verification
-
-RUN pnpm exec playwright install --with-deps chromium
-
-CMD ["pnpm", "verify"]

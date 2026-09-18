@@ -38,8 +38,7 @@ case "${1:-}" in
     ;;
   verify)
     "${compose[@]}" up --build --detach --wait app
-    "${compose[@]}" --profile tools build verify
-    "${compose[@]}" --profile tools run --rm verify
+    "${compose[@]}" exec -T app pnpm verify
     ;;
   logs)
     "${compose[@]}" logs --follow app
