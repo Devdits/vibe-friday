@@ -15,5 +15,15 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
+      - uses: docker/setup-buildx-action@v3
+      - name: Build verification image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: development
+          load: true
+          tags: vibe-friday-app
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       - name: Verify through Docker
-        run: ./vibe-friday verify
+        run: VIBE_FRIDAY_SKIP_IMAGE_BUILD=1 ./vibe-friday verify

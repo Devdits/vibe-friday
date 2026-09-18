@@ -1,5 +1,6 @@
 services:
   app:
+    image: vibe-friday-app
     build:
       context: .
       target: development
