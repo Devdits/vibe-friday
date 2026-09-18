@@ -42,8 +42,8 @@ export default function Home() {
             <Image
               className="portal-art"
               src="/images/interdimensional-portal-transparent.png"
-              width={1254}
-              height={1254}
+              width={640}
+              height={640}
               alt="A recovered object passing through an interdimensional portal"
               priority
             />
