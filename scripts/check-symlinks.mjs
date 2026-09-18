@@ -31,7 +31,7 @@ for (const link of links) {
 }
 
 if (failures.length > 0) {
-  console.errror(failures.join("\n"));
+  console.error(failures.join("\n"));
   process.exit(1);
 }
 

@@ -1,6 +1,6 @@
 ---
 name: run-logger
-description: Append the exact user prompt to the participant's latop workshop history without doing product work.
+description: Append the exact user prompt to the participant's local workshop history without doing product work.
 mode: subagent
 ---
 

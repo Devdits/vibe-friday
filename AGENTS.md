@@ -53,7 +53,7 @@ For substantial product work, use the project agents in this order:
    the acceptance criteria and required commands.
 
 Work is not complete until both reviewer and verifier approve it. Do not create
-delegation overhead for trivial quests or tiny documentation-only changes.
+delegation overhead for trivial questions or tiny documentation-only changes.
 Inspect `git status` before editing, preserve unrelated work, and do not commit
 or push unless the request authorizes it.
 
@@ -70,6 +70,7 @@ or push unless the request authorizes it.
   the container.
 
 ## Agent configuration
+
 Canonical agents and skills live under `.ai/`. Tool-specific directories contain
-relative symlinks only. Update the canoical source rather than replacing a
+relative symlinks only. Update the canonical source rather than replacing a
 symlink with a copy.
