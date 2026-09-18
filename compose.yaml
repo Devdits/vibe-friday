@@ -14,11 +14,7 @@ services:
       - app_node_modules:/workspace/node_modules
       - next_cache:/workspace/.next
     healthcheck:
-      test:
-        - CMD
-        - node
-        - -e
-        - fetch('http://localhost:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
       interval: 2s
       timeout: 2s
       retries: 30
