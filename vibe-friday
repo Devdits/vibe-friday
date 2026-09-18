@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+readonly project_name="vibe-friday"
+readonly project_url="http://vibe-friday.localhost"
+readonly compose=(docker compose --project-name "$project_name")
+
+require_docker() {
+  if ! command -v docker >/dev/null 2>&1 || ! docker compose version >/dev/null 2>&1; then
+    echo "Docker with the Compose plugin is required." >&2
+    exit 1
+  fi
+}
+
+show_usage() {
+  cat <<'USAGE'
+Usage: ./vibe-friday <command>
+
+Commands:
+  start    Build and start the project
+  stop     Stop the project
+  verify   Run formatting, linting, analysis, tests and build checks
+  logs     Follow application logs
+  shell    Open a shell in the application container
+USAGE
+}
+
+require_docker
+
+case "${1:-}" in
+  start)
+    "${compose[@]}" up --build --detach --wait app
+    echo "Vibe Friday is ready at $project_url"
+    ;;
+  stop)
+    "${compose[@]}" down
+    ;;
+  verify)
+    "${compose[@]}" up --build --detach --wait app
+    "${compose[@]}" --profile tools build verify
+    "${compose[@]}" --profile tools run --rm verify
+    ;;
+  logs)
+    "${compose[@]}" logs --follow app
+    ;;
+  shell)
+    "${compose[@]}" exec app sh
+    ;;
+  *)
+    show_usage
+    exit 1
+    ;;
+esac

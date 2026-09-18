@@ -1,0 +1,42 @@
+services:
+  app:
+    build:
+      context: .
+      target: development
+    environment:
+      NEXT_TELEMETRY_DISABLED: "1"
+      WATCHPACK_POLLING: "true"
+    init: true
+    ports:
+      - "127.0.0.1:80:3000"
+    volumes:
+      - .:/workspace
+      - app_node_modules:/workspace/node_modules
+      - next_cache:/workspace/.next
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - fetch('http://localhost:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))
+      interval: 2s
+      timeout: 2s
+      retries: 30
+      start_period: 10s
+
+  verify:
+    build:
+      context: .
+      target: verification
+    profiles:
+      - tools
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      CI: "true"
+      PLAYWRIGHT_BASE_URL: http://app:3000
+
+volumes:
+  app_node_modules:
+  next_cache:
