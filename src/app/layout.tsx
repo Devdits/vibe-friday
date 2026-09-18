@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vibe Friday",
-  description: "A small, containerized playground for agentic web development.",
+  title: "Interdimensional Lost & Found",
+  description: "Report unusual objects that have arrived from other realities.",
 };
 
 export default function RootLayout({
