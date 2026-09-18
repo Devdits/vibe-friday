@@ -35,7 +35,8 @@ services:
         condition: service_healthy
     environment:
       CI: "true"
-      PLAYWRIGHT_BASE_URL: http://app:3000
+      PLAYWRIGHT_BASE_URL: http://127.0.0.1:3000
+    network_mode: "service:app"
 
 volumes:
   app_node_modules:
