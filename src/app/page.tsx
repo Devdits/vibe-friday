@@ -33,12 +33,9 @@ export default function Home() {
               that is not from here?
             </h1>
             <p className="lead">
-              Report unusual objects that have arrived from other realities. We
-              will identify, contain, and—when possible—return them.
+              This public service portal is being prepared to identify, contain,
+              and—when possible—return unusual objects from other realities.
             </p>
-            <a className="primary-action" href="#report">
-              Report an object
-            </a>
           </div>
 
           <div className="portal-visual">
@@ -61,44 +58,17 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="available" aria-labelledby="available-title">
-          <h2 id="available-title">Available now</h2>
-          <p>Start with a report, or look through the small public registry.</p>
-
-          <div className="service-grid">
-            <article className="service-card" id="report">
-              <span className="service-icon" aria-hidden="true">
-                !
-              </span>
-              <h3>Report a discovery</h3>
-              <p>
-                Tell us what you found and where it appeared. Do not touch
-                objects that are humming.
-              </p>
-            </article>
-            <article className="service-card" id="registry">
-              <span className="service-icon" aria-hidden="true">
-                ⌕
-              </span>
-              <h3>Browse recovered objects</h3>
-              <p>See a short list of items currently held by the Department.</p>
-            </article>
+        <section className="construction" aria-labelledby="construction-title">
+          <div className="construction-message">
+            <p className="eyebrow">Under construction</p>
+            <h2 id="construction-title">
+              Reporting and the public registry are not available yet
+            </h2>
+            <p>
+              Object reports and recovered-object records will arrive in a later
+              portal update.
+            </p>
           </div>
-
-          <section
-            className="construction"
-            aria-labelledby="construction-title"
-          >
-            <div className="construction-message">
-              <h2 id="construction-title">
-                More realities are under construction
-              </h2>
-              <p>
-                Claims, object history, and containment updates will arrive
-                later.
-              </p>
-            </div>
-          </section>
         </section>
       </main>
 

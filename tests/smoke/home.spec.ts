@@ -12,8 +12,14 @@ test("the public portal serves its page and health endpoint", async ({
   ).toBeVisible();
 
   await expect(
-    page.getByRole("link", { name: "Report an object" }),
+    page.getByRole("heading", {
+      name: "Reporting and the public registry are not available yet",
+    }),
   ).toBeVisible();
+
+  await expect(
+    page.getByRole("link", { name: "Report an object" }),
+  ).toHaveCount(0);
 
   const healthResponse = await page.request.get("/api/health");
   expect(healthResponse.ok()).toBeTruthy();
