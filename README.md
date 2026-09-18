@@ -7,8 +7,8 @@ pnpm and browser-test dependencies stay inside containers.
 ## Start
 
 ```bash
-git clone https://github.com/Devdits/vide-friday.git
-cd vide-friday
+git clone https://github.com/Devdits/vibe-friday.git
+cd vibe-friday
 ./vibe-friday start
 ```
 
@@ -53,6 +53,6 @@ relative symlinks in their conventional directories.
 - Playwright
 - Docker Compose
 
-This project intentionally contains no database, deployment configuration or
-premature application architecture. Agents should introduce those only when a
-workshop requirement needs them.
+This project intentionally contains no database or premature application
+architecture. Agents should introduce infrastructure only when a workshop
+requirement needs it.

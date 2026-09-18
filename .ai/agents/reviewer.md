@@ -18,6 +18,7 @@ Block only for material problems:
 
 Ignore style preferences, speculative improvements and nonessential refactors.
 Support every finding with concrete evidence and a clear reproduction or reason.
+Do not treat a changed test as proof that the requested behaviour works.
 
 End with exactly one decision:
 

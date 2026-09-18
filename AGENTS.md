@@ -31,20 +31,25 @@ Use the wrapper commands rather than host-side `node`, `npm`, `pnpm` or `npx`.
 For substantial product work, use the project agents in this order:
 
 1. `planner` turns the request into a bounded plan and acceptance criteria.
-2. `builder` implements the approved plan and runs `./vibe-friday verify`.
-3. `reviewer` inspects the resulting diff for critical issues without editing.
-4. If the reviewer returns `BLOCKED`, the builder fixes the findings and asks
+2. The request owner or lead approves the plan. For a clear, small request,
+   the brief itself is sufficient approval; otherwise ask before building.
+3. `builder` implements the approved plan and runs `./vibe-friday verify`.
+4. `reviewer` inspects the resulting diff for critical issues without editing.
+5. If the reviewer returns `BLOCKED`, the builder fixes the findings and asks
    the reviewer to review again.
-5. Only after the reviewer returns `APPROVED`, `verifier` independently checks
+6. Only after the reviewer returns `APPROVED`, `verifier` independently checks
    the acceptance criteria and required commands.
 
 Work is not complete until both reviewer and verifier approve it. Do not create
 delegation overhead for trivial questions or tiny documentation-only changes.
+Inspect `git status` before editing, preserve unrelated work, and do not commit
+or push unless the request authorizes it.
 
 ## Project constraints
 
 - Keep the starter simple; add architecture only when a feature requires it.
-- The project is for local workshop use and will not be deployed.
+- Do not add a database, authentication, external APIs, cloud resources or
+  deployment automation unless the request explicitly requires it.
 - Preserve keyboard accessibility and semantic HTML.
 - Treat `./vibe-friday verify` as the definition of technical completion.
 - Never commit credentials, tokens, personal data or company information.
