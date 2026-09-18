@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Interdimensional Lost & Found",
-  description: "Report unusual objects that have arrived from other realities.",
+  description:
+    "A public-service portal for unusual objects from other realities.",
 };
 
 export default function RootLayout({

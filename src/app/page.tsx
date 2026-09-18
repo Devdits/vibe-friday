@@ -41,9 +41,9 @@ export default function Home() {
           <div className="portal-visual">
             <Image
               className="portal-art"
-              src="/images/interdimensional-portal-transparent.png"
-              width={640}
-              height={640}
+              src="/images/interdimensional-portal-transparent.webp"
+              width={1024}
+              height={1024}
               alt="A recovered object passing through an interdimensional portal"
               priority
             />
