@@ -28,16 +28,24 @@ USAGE
 
 require_docker
 
+start_app() {
+  if [[ "${VIBE_FRIDAY_SKIP_IMAGE_BUILD:-}" == "1" ]]; then
+    "${compose[@]}" up --detach --wait app
+  else
+    "${compose[@]}" up --build --detach --wait app
+  fi
+}
+
 case "${1:-}" in
   start)
-    "${compose[@]}" up --build --detach --wait app
+    start_app
     echo "Vibe Friday is ready at $project_url"
     ;;
   stop)
     "${compose[@]}" down
     ;;
   verify)
-    "${compose[@]}" up --build --detach --wait app
+    start_app
     "${compose[@]}" exec -T app pnpm verify
     ;;
   logs)

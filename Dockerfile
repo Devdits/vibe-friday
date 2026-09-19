@@ -15,11 +15,13 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
     pnpm install --frozen-lockfile
 
-FROM dependencies AS development
-
-COPY . .
+FROM dependencies AS playwright
 
 RUN pnpm exec playwright install --with-deps chromium
+
+FROM playwright AS development
+
+COPY . .
 
 EXPOSE 3000
 
