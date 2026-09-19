@@ -26,6 +26,18 @@ pnpm or browser tooling.
 The application is available at `http://vibe-friday.localhost:8791` after startup.
 Use the wrapper commands rather than host-side `node`, `npm`, `pnpm` or `npx`.
 
+## Prompt history
+
+For every user request received while working in this project, invoke
+`run-logger` before planning, answering or delegating. Send it the exact,
+unmodified user prompt. The logger appends it to
+`.vibe-friday/prompt-history.md` on the participant's laptop.
+
+The history is deliberately ignored by Git. It is a personal workshop artifact,
+not project source code. Do not add private data, credentials or hidden
+reasoning to it. Recording delegated-agent events is optional and secondary to
+recording the user's prompts.
+
 ## Required workflow
 
 For substantial product work, use the project agents in this order:

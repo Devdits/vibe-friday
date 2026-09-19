@@ -1,7 +1,7 @@
 import { lstat, realpath } from "node:fs/promises";
 import { resolve } from "node:path";
 
-const agentNames = ["planner", "builder", "reviewer", "verifier"];
+const agentNames = ["planner", "builder", "reviewer", "verifier", "run-logger"];
 const links = ["CLAUDE.md", ".github/copilot-instructions.md"];
 
 for (const directory of [".claude", ".github", ".opencode"]) {

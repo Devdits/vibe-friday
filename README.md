@@ -43,6 +43,13 @@ The reviewer must return `APPROVED` before independent verification begins.
 Canonical definitions live in `.ai/`; the supported tools discover them through
 relative symlinks in their conventional directories.
 
+## Personal prompt history
+
+The primary agent records each user request locally before doing work. The
+history is stored in `.vibe-friday/prompt-history.md` and is ignored by Git, so
+each participant can take it home without publishing it. The logger records the
+prompt verbatim; optional delegation events may be included later.
+
 ## Technology
 
 - Node.js 24 LTS
