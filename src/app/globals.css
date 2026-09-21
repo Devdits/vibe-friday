@@ -146,6 +146,12 @@ h1 {
   left: 3%;
 }
 
+.today-reported {
+  top: 50%;
+  right: -3%;
+  transform: translateY(-50%);
+}
+
 .construction {
   display: grid;
   min-height: 176px;
