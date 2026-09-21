@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { PortalStatusLabels } from "./components/portal-status-labels";
+
 export default function Home() {
   return (
     <div className="portal-shell">
@@ -47,18 +49,7 @@ export default function Home() {
               alt="A recovered object passing through an interdimensional portal"
               priority
             />
-            <p className="floating-label active-portal">
-              <strong>Active portal</strong>
-              <span>Stability: 84%</span>
-            </p>
-            <p className="floating-label today-recovered">
-              <strong>Today</strong>
-              <span>3 objects recovered</span>
-            </p>
-            <p className="floating-label today-reported">
-              <strong>Today</strong>
-              <span>5 objects reported</span>
-            </p>
+            <PortalStatusLabels />
           </div>
         </section>
 

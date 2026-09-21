@@ -117,6 +117,7 @@ h1 {
 }
 
 .floating-label {
+  --label-accent: #9aacc0;
   position: absolute;
   display: grid;
   gap: 6px;
@@ -124,7 +125,7 @@ h1 {
   padding: 15px 18px;
   color: #d9e1ec;
   background: #203049;
-  border: 1px solid #52657e;
+  border: 1px solid color-mix(in srgb, var(--label-accent) 45%, #52657e);
   border-radius: 14px;
   box-shadow: 0 0.6rem 1.5rem rgb(3 12 27 / 28%);
   font-size: clamp(0.9rem, 1.7vw, 1.05rem);
@@ -132,8 +133,34 @@ h1 {
 }
 
 .floating-label strong {
-  color: var(--yellow);
+  color: var(--label-accent);
   font-size: 1.05em;
+}
+
+.recovered {
+  --label-accent: #79ddb2;
+}
+
+.reported-informational {
+  --label-accent: #9aacc0;
+}
+
+.reported-attention,
+.portal-attention {
+  --label-accent: #f3cb61;
+}
+
+.reported-critical,
+.portal-critical {
+  --label-accent: #f07e83;
+}
+
+.portal-stable {
+  --label-accent: #72d7ee;
+}
+
+.portal-network {
+  --label-accent: #91d8bd;
 }
 
 .active-portal {
