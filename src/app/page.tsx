@@ -11,7 +11,7 @@ export default function Home() {
         >
           <Image
             className="brand-mark"
-            src="/images/interdimensional-portal.webp"
+            src="/icon.svg"
             width={30}
             height={30}
             alt=""
