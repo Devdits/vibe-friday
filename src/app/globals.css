@@ -139,17 +139,44 @@ h1 {
 .active-portal {
   top: 7%;
   right: 3%;
+  animation: active-portal-float 7s ease-in-out infinite;
 }
 
 .today-recovered {
   bottom: 8%;
   left: 3%;
+  animation: recovered-label-float 8s ease-in-out infinite;
 }
 
 .today-reported {
   top: 50%;
   right: -3%;
   transform: translateY(-50%);
+  animation: reported-label-float 7.5s ease-in-out infinite;
+}
+
+@keyframes active-portal-float {
+  50% {
+    transform: translate(-7px, 6px);
+  }
+}
+
+@keyframes recovered-label-float {
+  50% {
+    transform: translate(7px, -6px);
+  }
+}
+
+@keyframes reported-label-float {
+  50% {
+    transform: translate(-6px, calc(-50% + 6px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-label {
+    animation: none;
+  }
 }
 
 .construction {
