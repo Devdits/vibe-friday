@@ -55,6 +55,10 @@ export default function Home() {
               <strong>Today</strong>
               <span>3 objects recovered</span>
             </p>
+            <p className="floating-label today-reported">
+              <strong>Today</strong>
+              <span>5 objects reported</span>
+            </p>
           </div>
         </section>
 
