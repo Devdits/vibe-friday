@@ -12,7 +12,11 @@ type PortalScenario = {
 
 const scenarios: PortalScenario[] = [
   {
-    portal: { heading: "Active portal", detail: "Stability: 84%", tone: "stable" },
+    portal: {
+      heading: "Active portal",
+      detail: "Stability: 84%",
+      tone: "stable",
+    },
     recovered: "3 objects recovered",
     reported: { detail: "5 objects reported", tone: "informational" },
   },
