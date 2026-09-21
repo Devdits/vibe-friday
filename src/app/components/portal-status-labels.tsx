@@ -72,7 +72,9 @@ export function PortalStatusLabels() {
 
   return (
     <>
-      <p className={`floating-label active-portal portal-${scenario.portal.tone}`}>
+      <p
+        className={`floating-label active-portal portal-${scenario.portal.tone}`}
+      >
         <strong>{scenario.portal.heading}</strong>
         <span>{scenario.portal.detail}</span>
       </p>
