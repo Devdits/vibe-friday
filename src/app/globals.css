@@ -24,6 +24,8 @@ a {
 }
 
 .portal-shell {
+  display: flex;
+  flex-direction: column;
   width: min(100% - 4px, 1200px);
   min-height: 100vh;
   margin: 2px auto 0;
@@ -31,6 +33,9 @@ a {
   background: #121d2c;
   border: 1px solid #42536a;
   border-radius: 16px 16px 0 0;
+}
+main {
+  flex: 1;
 }
 .site-header {
   display: flex;
