@@ -25,6 +25,7 @@ jobs:
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -37,11 +38,28 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
+      - name: Check Vercel project access
+        run: |
+          response="$(curl --silent --show-error --write-out $'\n%{http_code}' --get \
+            --header "Authorization: Bearer $VERCEL_TOKEN" \
+            --data-urlencode "teamId=$VERCEL_ORG_ID" \
+            "https://api.vercel.com/v9/projects/$VERCEL_PROJECT_ID")"
+          body="${response%$'\n'*}"
+          status="${response##*$'\n'}"
+
+          if [ "$status" = "200" ]; then
+            echo "Vercel API confirms access to the configured project."
+            exit 0
+          fi
+
+          node -e 'const response = JSON.parse(process.argv[1]); const error = response.error ?? response; console.error(`Vercel API returned HTTP ${process.argv[2]}: ${error.code ?? "unknown"} — ${error.message ?? "No message"}`);' "$body" "$status"
+          exit 1
+
       - name: Pull production settings
-        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
 
       - name: Build
-        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        run: vercel build --prod --token="$VERCEL_TOKEN"
 
       - name: Deploy
-        run: vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
