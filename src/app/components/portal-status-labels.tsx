@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 type StatusTone = "stable" | "attention" | "critical" | "network";
 
@@ -46,6 +46,21 @@ const scenarios: PortalScenario[] = [
 ];
 
 const storageKey = "vibe-friday-portal-scenario";
+let clientScenario: PortalScenario | undefined;
+
+function subscribe() {
+  return () => {};
+}
+
+function getServerSnapshot() {
+  return scenarios[0];
+}
+
+function getClientSnapshot() {
+  clientScenario ??= selectNextScenario();
+
+  return clientScenario;
+}
 
 function selectNextScenario() {
   const storedScenario = window.sessionStorage.getItem(storageKey);
@@ -68,11 +83,11 @@ function selectNextScenario() {
 }
 
 export function PortalStatusLabels() {
-  const [scenario, setScenario] = useState(scenarios[0]);
-
-  useEffect(() => {
-    setScenario(selectNextScenario());
-  }, []);
+  const scenario = useSyncExternalStore(
+    subscribe,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
 
   return (
     <>
