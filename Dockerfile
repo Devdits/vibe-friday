@@ -5,6 +5,7 @@ FROM node:24.21.0-bookworm-slim AS dependencies
 ENV COREPACK_HOME=/corepack
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PNPM_HOME=/pnpm
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 ENV PATH=$PNPM_HOME:$PATH
 
 WORKDIR /workspace
@@ -21,7 +22,12 @@ RUN pnpm exec playwright install --with-deps chromium
 
 FROM playwright AS development
 
-COPY . .
+COPY --chown=node:node . .
+
+# Named volumes mounted here are initialized with these ownership settings.
+RUN mkdir -p .next && chown node:node .next
+
+USER node
 
 EXPOSE 3000
 

@@ -7,8 +7,18 @@ readonly project_url="http://vibe-friday.localhost:8791"
 readonly compose=(docker compose --project-name "$project_name")
 
 require_docker() {
-  if ! command -v docker >/dev/null 2>&1 || ! docker compose version >/dev/null 2>&1; then
+  if ! command -v docker >/dev/null 2>&1; then
     echo "Docker with the Compose plugin is required." >&2
+    exit 1
+  fi
+
+  if ! docker compose version >/dev/null 2>&1; then
+    echo "The Docker Compose plugin is required." >&2
+    exit 1
+  fi
+
+  if ! docker info >/dev/null 2>&1; then
+    echo "The Docker daemon is not available. Start Docker and try again." >&2
     exit 1
   fi
 }
@@ -25,6 +35,19 @@ Commands:
   shell    Open a shell in the application container
 USAGE
 }
+
+if (( $# != 1 )); then
+  show_usage
+  exit 1
+fi
+
+case "$1" in
+  start | stop | verify | logs | shell) ;;
+  *)
+    show_usage
+    exit 1
+    ;;
+esac
 
 require_docker
 
@@ -53,9 +76,5 @@ case "${1:-}" in
     ;;
   shell)
     "${compose[@]}" exec app sh
-    ;;
-  *)
-    show_usage
-    exit 1
     ;;
 esac

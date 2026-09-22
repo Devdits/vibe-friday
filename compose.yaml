@@ -8,8 +8,12 @@ services:
       NEXT_TELEMETRY_DISABLED: "1"
       WATCHPACK_POLLING: "true"
     init: true
+    security_opt:
+      - no-new-privileges:true
     ports:
       - "127.0.0.1:8791:3000"
+    restart: unless-stopped
+    stop_grace_period: 10s
     volumes:
       - .:/workspace
       - app_node_modules:/workspace/node_modules
