@@ -10,10 +10,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # Vibe Friday agent instructions
 
-This is a deliberately small, containerized Next.js playground for practising
-prompting, skills, delegation and verification. The host should need only Git,
-Docker and the Docker Compose plugin. Do not require host-installed Node.js,
-pnpm or browser tooling.
+This is a small, containerized Next.js playground. Use the project wrapper;
+do not require host-installed Node.js, pnpm or browser tooling.
 
 ## Essential commands
 
@@ -21,37 +19,32 @@ pnpm or browser tooling.
 - `./vibe-friday stop` — stop the application.
 - `./vibe-friday verify` — run every required quality check.
 - `./vibe-friday logs` — follow application logs.
-- `./vibe-friday shell` — open a shell in the application container.
 
 The application is available at `http://vibe-friday.localhost:8791` after startup.
 Use the wrapper commands rather than host-side `node`, `npm`, `pnpm` or `npx`.
 
 ## Required workflow
 
-For substantial product work, use the project agents in this order:
+For substantial product work, use the project agents in order:
 
 1. `planner` turns the request into a bounded plan and acceptance criteria.
-2. The request owner or lead approves the plan. For a clear, small request,
-   the brief itself is sufficient approval; otherwise ask before building.
+2. The request owner approves the plan; a clear, small brief counts as approval.
 3. `builder` implements the approved plan and runs `./vibe-friday verify`.
 4. `reviewer` inspects the resulting diff for critical issues without editing.
-5. If the reviewer returns `BLOCKED`, the builder fixes the findings and asks
-   the reviewer to review again.
-6. Only after the reviewer returns `APPROVED`, `verifier` independently checks
-   the acceptance criteria and required commands.
+5. On `BLOCKED`, `builder` fixes the findings and returns the complete diff to
+   `reviewer`.
+6. After `APPROVED`, `verifier` independently checks the acceptance criteria and
+   returns `VERIFIED` or `FAILED`.
 
-Work is not complete until both reviewer and verifier approve it. Do not create
-delegation overhead for trivial questions or tiny documentation-only changes.
-Inspect `git status` before editing, preserve unrelated work, and do not commit
-or push unless the request authorizes it.
+Work is complete only after `APPROVED` and `VERIFIED`. Skip this workflow for
+trivial questions and tiny documentation-only changes. Inspect `git status`
+before editing, preserve unrelated work, and commit or push only when requested.
 
 ## Project constraints
 
-- Keep the starter simple; add architecture only when a feature requires it.
-- Do not add a database, authentication, external APIs, cloud resources or
-  deployment automation unless the request explicitly requires it.
+- Prefer the smallest solution and add dependencies or infrastructure only when
+  the request requires them.
 - Preserve keyboard accessibility and semantic HTML.
-- Treat `./vibe-friday verify` as the definition of technical completion.
 - Never commit credentials, tokens, personal data or company information.
 - Use synthetic content only.
 - Do not edit generated dependency files manually; update them through pnpm in
