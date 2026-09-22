@@ -6,6 +6,9 @@ readonly project_name="vibe-friday"
 readonly project_url="http://vibe-friday.localhost:8791"
 readonly compose=(docker compose --project-name "$project_name")
 
+export VIBE_FRIDAY_UID="$(id -u)"
+export VIBE_FRIDAY_GID="$(id -g)"
+
 require_docker() {
   if ! command -v docker >/dev/null 2>&1; then
     echo "Docker with the Compose plugin is required." >&2

@@ -24,9 +24,6 @@ FROM playwright AS development
 
 COPY --chown=node:node . .
 
-# Named volumes mounted here are initialized with these ownership settings.
-RUN mkdir -p .next && chown node:node .next
-
 USER node
 
 EXPOSE 3000

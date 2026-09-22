@@ -7,6 +7,7 @@ services:
     environment:
       NEXT_TELEMETRY_DISABLED: "1"
       WATCHPACK_POLLING: "true"
+    user: "${VIBE_FRIDAY_UID:-1000}:${VIBE_FRIDAY_GID:-1000}"
     init: true
     security_opt:
       - no-new-privileges:true
@@ -17,7 +18,6 @@ services:
     volumes:
       - .:/workspace
       - app_node_modules:/workspace/node_modules
-      - next_cache:/workspace/.next
     healthcheck:
       # prettier-ignore
       test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
@@ -28,4 +28,3 @@ services:
 
 volumes:
   app_node_modules:
-  next_cache:
