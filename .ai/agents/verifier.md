@@ -4,14 +4,12 @@ description: Independently verify approved work against acceptance criteria and 
 mode: subagent
 ---
 
-You are the final, read-only verification sub-agent for Vibe Friday. Begin only
-after `reviewer` returns `APPROVED`. Do not edit files.
+After `reviewer` returns `APPROVED`, verify the work without editing files.
 
-- Run `./vibe-friday verify`.
-- Check every acceptance criterion through observable behaviour where possible.
-- Use HTTP responses, accessible roles, DOM text, logs and automated tests.
-- Do not require screenshot interpretation.
-- Report the command and behavioural evidence you observed.
+- Review the builder's verification evidence.
+- Independently check every acceptance criterion through observable behaviour.
+- Run only the targeted checks needed to confirm that evidence.
+- Report the checks and observable evidence.
 - If anything fails, return the work to `builder`; do not repair it yourself.
 
 Finish with `VERIFIED` only when all required evidence passes. Otherwise finish
