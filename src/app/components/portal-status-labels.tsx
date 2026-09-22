@@ -2,48 +2,11 @@
 
 import { useSyncExternalStore } from "react";
 
-type StatusTone = "stable" | "attention" | "critical" | "network";
-
-type PortalScenario = {
-  portal: { heading: string; detail: string; tone: StatusTone };
-  recovered: string;
-  reported: { detail: string; tone: StatusTone | "informational" };
-};
-
-const scenarios: PortalScenario[] = [
-  {
-    portal: {
-      heading: "Active portal",
-      detail: "Stability: 84%",
-      tone: "stable",
-    },
-    recovered: "3 objects recovered",
-    reported: { detail: "5 objects reported", tone: "informational" },
-  },
-  {
-    portal: {
-      heading: "Active portal",
-      detail: "Stability: 68%",
-      tone: "attention",
-    },
-    recovered: "2 objects recovered",
-    reported: { detail: "8 awaiting assessment", tone: "attention" },
-  },
-  {
-    portal: {
-      heading: "Active portal",
-      detail: "Stability: 36%",
-      tone: "critical",
-    },
-    recovered: "1 object recovered",
-    reported: { detail: "17 awaiting assessment", tone: "critical" },
-  },
-  {
-    portal: { heading: "Portal network", detail: "Stable", tone: "network" },
-    recovered: "4 objects recovered",
-    reported: { detail: "4 objects reported", tone: "informational" },
-  },
-];
+import {
+  portalScenarios,
+  selectPortalScenario,
+  type PortalScenario,
+} from "./portal-scenarios";
 
 const storageKey = "vibe-friday-portal-scenario";
 let clientScenario: PortalScenario | undefined;
@@ -53,7 +16,7 @@ function subscribe() {
 }
 
 function getServerSnapshot() {
-  return scenarios[0];
+  return portalScenarios[0];
 }
 
 function getClientSnapshot() {
@@ -64,22 +27,11 @@ function getClientSnapshot() {
 
 function selectNextScenario() {
   const storedScenario = window.sessionStorage.getItem(storageKey);
-  if (storedScenario === null) {
-    window.sessionStorage.setItem(storageKey, "0");
+  const selection = selectPortalScenario(storedScenario, Math.random());
 
-    return scenarios[0];
-  }
+  window.sessionStorage.setItem(storageKey, String(selection.index));
 
-  const previous = Number(storedScenario);
-  const previousIndex = Number.isInteger(previous) ? previous : -1;
-  const candidates = scenarios
-    .map((_, index) => index)
-    .filter((index) => index !== previousIndex);
-  const nextIndex = candidates[Math.floor(Math.random() * candidates.length)];
-
-  window.sessionStorage.setItem(storageKey, String(nextIndex));
-
-  return scenarios[nextIndex];
+  return selection.scenario;
 }
 
 export function PortalStatusLabels() {
